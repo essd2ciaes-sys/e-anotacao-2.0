@@ -265,6 +265,50 @@ button:hover{
 }
 
 /* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.btn-voltar{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #374151,
+        #111827
+    );
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+}
+
+.btn-voltar:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+
+
+/* =========================
    DASHBOARD
 ========================= */
 
@@ -735,7 +779,12 @@ class="btn-dashboard"
 ABRIR DASHBOARD
 
 </a>
-
+<a
+href="index.html"
+class="btn-voltar"
+>
+VOLTAR AO MENU PRINCIPAL
+</a>
 </form>
 
 </div>
