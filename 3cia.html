@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>E-Anotação 2.0 - 3ª CIA</title>
+<title>E-Anotação 2.0 - 2ª CIA</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,9 +36,10 @@
     --border:#D1D5DB;
 
     /* CORES 3ª CIA */
-    --primary:#1E3A8A;
+    --primary:#1D4ED8;
     --primary2:#2563EB;
-
+    --primary-dark:#1E3A8A;
+   
     --shadow:
         0 1px 2px rgba(0,0,0,.08),
         0 4px 12px rgba(0,0,0,.06);
@@ -72,12 +73,12 @@ body{
 header{
 
     background:linear-gradient(
-        90deg,
+        135deg,
         var(--primary),
-        var(--primary2)
+        var(--primary-dark)
     );
 
-    color:white;
+    padding:22px 40px;
 
     display:flex;
 
@@ -85,63 +86,127 @@ header{
 
     justify-content:space-between;
 
-    padding:18px 40px;
+    box-shadow:
+        0 4px 18px rgba(0,0,0,.18);
 
-    box-shadow:var(--shadow);
+    border-bottom:
+        4px solid rgba(255,255,255,.08);
 }
 
-.logo{
+.header-lado{
 
-    height:90px;
+    width:120px;
+
+    display:flex;
+
+    justify-content:center;
 }
 
-.titulo{
+.header-centro{
 
     text-align:center;
+
+    flex:1;
 }
 
-.titulo h2{
+.titulo-sistema{
 
     font-size:28px;
 
     font-weight:700;
 
-    letter-spacing:.5px;
+    color:white;
+
+    letter-spacing:1px;
 }
 
-.subtitulo{
+.subtitulo-sistema{
 
-    margin-top:8px;
+    margin-top:6px;
 
     font-size:18px;
 
-    font-weight:600;
+    color:#E5E7EB;
+
+    font-weight:500;
 }
 
+.cia-sistema{
+
+    margin-top:12px;
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(4px);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:white;
+}
+
+.logo{
+
+    height:90px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
 /* =========================
    CONTAINER
 ========================= */
 
 .container{
 
-    max-width:900px;
+    max-width:950px;
 
     margin:40px auto;
 
-    background:rgba(255,255,255,.97);
+    background:rgba(255,255,255,.96);
 
-    border-radius:24px;
+    backdrop-filter:blur(10px);
 
-    padding:40px;
+    border-radius:28px;
+
+    padding:42px;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.35);
+        0 10px 40px rgba(0,0,0,.18);
 
-    backdrop-filter:blur(6px);
+    border:
+        1px solid rgba(255,255,255,.25);
 }
 
 /* =========================
-   FORM
+   FORM TITLE
+========================= */
+   .form-title{
+
+    margin-bottom:28px;
+
+    padding-bottom:14px;
+
+    border-bottom:2px solid #E5E7EB;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:var(--primary);
+}
+/* =========================
+   FORM 
 ========================= */
 
 label{
@@ -234,35 +299,74 @@ button{
 
     border:none;
 
-    padding:16px;
+    padding:18px;
 
     border-radius:14px;
 
     background:linear-gradient(
-        90deg,
-        var(--primary),
-        var(--primary2)
+        135deg,
+        var(--primary2),
+        var(--primary-dark)
     );
 
     color:white;
 
     font-size:16px;
-
     font-weight:700;
+
+    letter-spacing:.5px;
 
     cursor:pointer;
 
     transition:.25s;
 
-    box-shadow:var(--shadow);
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.18);
 }
 
-button:hover{
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.btn-voltar{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #374151,
+        #111827
+    );
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+}
+
+.btn-voltar:hover{
 
     transform:translateY(-2px);
 
     opacity:.95;
 }
+
 
 /* =========================
    DASHBOARD
@@ -309,63 +413,29 @@ button:hover{
 }
 
 /* =========================
-   BOTÃO VOLTAR
-========================= */
-
-.btn-voltar{
-
-    display:block;
-
-    width:100%;
-
-    margin-top:14px;
-
-    padding:16px;
-
-    border-radius:14px;
-
-    text-align:center;
-
-    text-decoration:none;
-
-    font-size:16px;
-    font-weight:700;
-
-    color:white;
-
-    background:linear-gradient(
-        90deg,
-        #374151,
-        #111827
-    );
-
-    box-shadow:var(--shadow);
-
-    transition:.25s;
-}
-
-.btn-voltar:hover{
-
-    transform:translateY(-2px);
-
-    opacity:.95;
-}
-
-/* =========================
    FOOTER
 ========================= */
 
 footer{
 
-    margin-top:40px;
+    margin-top:50px;
 
     text-align:center;
 
-    padding:20px;
+    padding:24px;
 
-    color:#6B7280;
+    color:#9CA3AF;
 
     font-size:13px;
+
+    line-height:1.9;
+}
+
+.footer-copy{
+
+    margin-top:10px;
+
+    font-weight:600;
 }
 
 /* =========================
@@ -401,7 +471,7 @@ footer{
 
 <script>
 
-const API_URL = "COLE_AQUI_API_3CIA";
+const API_URL = "COLE_AQUI_API_2CIA";
 
 // =========================
 // MÁSCARA RE
@@ -596,24 +666,37 @@ async function enviarFormulario(e){
 
 <header>
 
-   <img src="logo_pm.png" class="logo">
+    <div class="header-lado">
+        <img src="logo_pm.png" class="logo">
+    </div>
 
-    <div class="titulo">
+    <div class="header-centro">
 
-        <h2>CONTROLE DE CONDUTA ESCOLAR</h2>
+        <div class="titulo-sistema">
+            CONTROLE DE CONDUTA ESCOLAR
+        </div>
 
-        <div class="subtitulo">
-            E-Anotação 2.0 - 3ª CIA
+        <div class="subtitulo-sistema">
+            E-Anotação 2.0
+        </div>
+
+        <div class="cia-sistema">
+            3ª COMPANHIA
         </div>
 
     </div>
 
-    <img src="logo_3cia.png" class="logo">
+    <div class="header-lado">
+        <img src="logo_3cia.png" class="logo">
+    </div>
 
 </header>
 
 <div class="container">
-
+   
+<div class="form-title">
+    REGISTRO DE OCORRÊNCIA DISCIPLINAR
+</div>
 <form onsubmit="enviarFormulario(event)">
 
 <label>RE</label>
@@ -640,7 +723,7 @@ required
 
 <select id="cia">
 
-<option selected>1</option>
+<option selected>3</option>
 
 </select>
 
@@ -770,7 +853,7 @@ REGISTRAR OCORRÊNCIA
 </button>
 
 <a
-href="LINK_DASHBOARD_1CIA"
+href="LINK_DASHBOARD_2CIA"
 target="_blank"
 class="btn-dashboard"
 >
@@ -790,16 +873,18 @@ VOLTAR AO MENU PRINCIPAL
 
 <footer>
 
+ <div class="footer-linha">
+      Idealizadores — Cap PM Alessandro • 1º Ten PM Camora
+   </div>
 
-<div>
-      Idealizadores - Cap PM Alessandro - 1º Ten PM Camora 
-      </div>
-      <div>
-      Desenvolvedores - Al Sd PM Feitosa - Al Sd PM Assis - Al Sd PM Samir
-      </div>
-      <div>
-      © 2026 Polícia Militar do Estado de São Paulo - ESSD
-      </div>
+   <div class="footer-linha">
+      Desenvolvedores — Al Sd PM Feitosa • Al Sd PM Assis • Al Sd PM Samir
+   </div>
+
+   <div class="footer-copy">
+      © 2026 Polícia Militar do Estado de São Paulo — ESSD
+   </div>
+
 
 </footer>
 
