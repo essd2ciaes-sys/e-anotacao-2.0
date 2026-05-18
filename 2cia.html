@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>E-Anotação 2.0 - 2ª CIA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================
+   TEMA 2ª CIA
+========================= */
+
+:root{
+
+    --bg:#F3F4F6;
+    --card:#FFFFFF;
+    --text:#202124;
+    --input:#F9FAFB;
+    --border:#D1D5DB;
+
+    /* CORES 2ª CIA */
+    --primary:#14532D;
+    --primary2:#15803D;
+
+    --shadow:
+        0 1px 2px rgba(0,0,0,.08),
+        0 4px 12px rgba(0,0,0,.06);
+
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #1F2937
+        );
+
+    color:var(--text);
+
+    font-family:'Inter',sans-serif;
+
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:18px 40px;
+
+    box-shadow:var(--shadow);
+}
+.logo{
+
+    height:90px;
+}
+
+.titulo{
+
+    text-align:center;
+}
+
+.titulo h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+}
+
+.subtitulo{
+
+    margin-top:8px;
+
+    font-size:18px;
+
+    font-weight:600;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    background:rgba(255,255,255,.97);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.35);
+
+    backdrop-filter:blur(6px);
+}
+
+/* =========================
+   FORM
+========================= */
+
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    background:var(--input);
+
+    color:var(--text);
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-size:15px;
+
+    transition:.2s;
+}
+
+textarea{
+
+    resize:none;
+
+    min-height:120px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(250,204,21,.20);
+
+    background:white;
+}
+
+/* =========================
+   AVISO
+========================= */
+
+.aviso{
+
+    margin-top:24px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:rgba(250,204,21,.12);
+
+    color:#92400E;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:var(--shadow);
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.btn-dashboard{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+}
+
+.btn-dashboard:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#6B7280;
+
+    font-size:13px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:768px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:16px;
+
+        text-align:center;
+    }
+
+    .logo{
+
+        height:70px;
+    }
+
+    .container{
+
+        margin:20px;
+
+        padding:24px;
+    }
+
+}
+
+</style>
+
+<script>
+
+const API_URL = "COLE_AQUI_API_2CIA";
+
+// =========================
+// MÁSCARA RE
+// =========================
+
+function formatarRE(campo){
+
+    let v = campo.value
+        .toUpperCase()
+        .replace(/[^0-9A-Z]/g,'');
+
+    if(v.length > 6){
+
+        campo.value =
+            v.substring(0,6) +
+            '-' +
+            v.substring(6,7);
+
+    }else{
+
+        campo.value = v;
+    }
+}
+
+// =========================
+// LETRAS MAIÚSCULAS
+// =========================
+
+function apenasLetras(e){
+
+    e.target.value = e.target.value
+        .replace(/[^A-Za-zÀ-ÿ\s]/g,'')
+        .toUpperCase();
+}
+
+// =========================
+// BUSCAR ALUNO
+// =========================
+
+let alunoValido = false;
+
+async function buscarAluno(){
+
+    const reDigitado =
+        document.getElementById("re").value;
+
+    if(reDigitado.length < 8) return;
+
+    try{
+
+        const res =
+            await fetch(API_URL + "?tipo=alunos");
+
+        const lista = await res.json();
+
+        const dadosAluno = lista.find(a =>
+
+            a.re.toString().trim().toUpperCase() ===
+            reDigitado.trim().toUpperCase()
+        );
+
+        if(dadosAluno){
+
+            alunoValido = true;
+
+            nome.value =
+                dadosAluno.nome || "";
+
+            cia.value =
+                dadosAluno.cia || "1";
+
+            pelotao.value =
+                dadosAluno.pelotao || "";
+
+            aluno.value =
+                dadosAluno.aluno || "";
+
+        }else{
+
+            alunoValido = false;
+
+            alert("RE NÃO CADASTRADO.");
+
+            nome.value = "";
+            pelotao.value = "";
+            aluno.value = "";
+        }
+
+    }catch(e){
+
+        console.log(e);
+    }
+}
+
+// =========================
+// BUSCAR ANOTANTE
+// =========================
+
+async function buscarAnotante(){
+
+    const re =
+        document.getElementById("re_anotante").value;
+
+    if(re.length < 8) return;
+
+    try{
+
+        const res =
+            await fetch(API_URL + "?tipo=anotantes");
+
+        const lista =
+            await res.json();
+
+        const anot = lista.find(a =>
+
+            a.re.trim().toUpperCase() ===
+            re.trim().toUpperCase()
+        );
+
+        if(anot){
+
+            anotante.value =
+                anot.nome;
+
+            cargo.value =
+                anot.cargo;
+        }
+
+    }catch(e){
+
+        console.log(e);
+    }
+}
+
+// =========================
+// ENVIAR
+// =========================
+
+async function enviarFormulario(e){
+
+    e.preventDefault();
+
+    if(!alunoValido){
+
+        alert("RE NÃO CADASTRADO.");
+
+        return;
+    }
+
+    const dados = {
+
+        re: re.value,
+        nome: nome.value,
+        cia: cia.value,
+        pelotao: pelotao.value,
+        aluno: aluno.value,
+
+        datahora: datahora.value,
+
+        descricao: descricao.value,
+
+        codigo: codigo.value,
+
+        ciencia: ciencia.value,
+
+        anotante: anotante.value,
+
+        re_anotante: re_anotante.value,
+
+        cargo: cargo.value
+    };
+
+    await fetch(API_URL,{
+
+        method:"POST",
+
+        body:JSON.stringify(dados),
+
+        mode:"no-cors"
+    });
+
+    alert("Registro enviado com sucesso!");
+
+    document.querySelector("form").reset();
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+
+   <img src="logo_2cia.png" class="logo">
+
+    <div class="titulo">
+
+        <h2>CONTROLE DE CONDUTA ESCOLAR</h2>
+
+        <div class="subtitulo">
+            E-Anotação 2.0 - 2ª CIA
+        </div>
+
+    </div>
+
+    <img src="logo_1cia.png" class="logo">
+
+</header>
+
+<div class="container">
+
+<form onsubmit="enviarFormulario(event)">
+
+<label>RE</label>
+
+<input
+id="re"
+maxlength="8"
+pattern="[0-9]{6}-[A-Z0-9]"
+oninput="formatarRE(this)"
+onblur="buscarAluno()"
+required
+>
+
+<label>Nome de Guerra</label>
+
+<input
+id="nome"
+maxlength="20"
+oninput="apenasLetras(event)"
+required
+>
+
+<label>CIA</label>
+
+<select id="cia">
+
+<option selected>1</option>
+
+</select>
+
+<label>Pelotão</label>
+
+<input
+id="pelotao"
+type="number"
+max="99"
+required
+>
+
+<label>Nº Aluno</label>
+
+<input
+id="aluno"
+type="number"
+max="99"
+required
+>
+
+<label>Data e Hora da Anotação</label>
+
+<input
+id="datahora"
+type="datetime-local"
+required
+>
+
+<label>Descrição de Conduta Infratora</label>
+
+<textarea
+id="descricao"
+maxlength="300"
+oninput="apenasLetras(event)"
+required
+></textarea>
+
+<label>Cód. D-5 PM</label>
+
+<select id="codigo">
+
+<option>A1</option>
+<option>B1</option>
+<option>C1</option>
+<option>C2</option>
+<option>C3</option>
+<option>D1</option>
+<option>D7</option>
+<option>E1</option>
+<option>E2</option>
+<option>E3</option>
+<option>E4</option>
+<option>E5</option>
+<option>E6</option>
+<option>F1</option>
+<option>F2</option>
+<option>F3</option>
+<option>F4</option>
+<option>F5</option>
+<option>F6</option>
+<option>F7</option>
+<option>G1</option>
+<option>G2</option>
+<option>G3</option>
+<option>G4</option>
+<option>G5</option>
+<option>G6</option>
+<option>G7</option>
+<option>G10</option>
+<option>G11</option>
+<option>H2</option>
+<option>H3</option>
+<option>I2</option>
+<option>I3</option>
+
+</select>
+
+<label>Data e Hora da Ciência</label>
+
+<input
+id="ciencia"
+type="datetime-local"
+required
+>
+
+<label>RE Anotante</label>
+
+<input
+id="re_anotante"
+maxlength="8"
+pattern="[0-9]{6}-[A-Z0-9]"
+oninput="formatarRE(this)"
+onblur="buscarAnotante()"
+required
+>
+
+<label>Anotante</label>
+
+<input
+id="anotante"
+maxlength="50"
+oninput="apenasLetras(event)"
+required
+>
+
+<label>Cargo/Função</label>
+
+<input
+id="cargo"
+maxlength="30"
+oninput="apenasLetras(event)"
+required
+>
+
+<div class="aviso">
+
+Artigo 128 da D-5-PM:
+Prazo de recurso de 24h após a ciência.
+
+</div>
+
+<button type="submit">
+
+REGISTRAR OCORRÊNCIA
+
+</button>
+
+<a
+href="LINK_DASHBOARD_1CIA"
+target="_blank"
+class="btn-dashboard"
+>
+
+ABRIR DASHBOARD
+
+</a>
+
+</form>
+
+</div>
+
+<footer>
+
+
+<div>
+      Idealizadores - Cap PM Alessandro - 1º Ten PM Camora 
+      </div>
+      <div>
+      Desenvolvedores - Al Sd PM Feitosa - Al Sd PM Assis - Al Sd PM Samir
+      </div>
+      <div>
+      © 2026 Polícia Militar do Estado de São Paulo - ESSD
+      </div>
+
+</footer>
+
+</body>
+</html>
