@@ -149,6 +149,73 @@ h1{
 }
 
 /* =========================
+   TOPO AÇÕES
+========================= */
+
+.topo-acoes{
+
+    position:absolute;
+
+    top:24px;
+
+    right:30px;
+
+    display:flex;
+
+    gap:12px;
+
+    z-index:999;
+}
+
+.btn-topo{
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:.25s;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.18);
+}
+
+/* DASHBOARD */
+
+.btn-dashboard-topo{
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+}
+
+/* SAIR */
+
+.btn-sair{
+
+    background:linear-gradient(
+        135deg,
+        #DC2626,
+        #991B1B
+    );
+}
+
+.btn-topo:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+/* =========================
    CARD
 ========================= */
 
@@ -255,7 +322,7 @@ footer{
         padding:24px;
     }
 }
-```css id="yrh7cr"
+
 .btn-sair{
 
     width:100%;
@@ -290,12 +357,31 @@ footer{
 
     transform:translateY(-2px);
 }
-```
+
 
 </style>
 </head>
 
 <body>
+ <div class="topo-acoes">
+
+    <a
+    href="SEU_LINK_DO_DASHBOARD"
+    target="_blank"
+    class="btn-topo btn-dashboard-topo"
+    >
+        DASHBOARD
+    </a>
+
+    <a
+    href="#"
+    onclick="sairSistema()"
+    class="btn-topo btn-sair"
+    >
+        SAIR
+    </a>
+
+</div>
 
 <div class="container">
 
@@ -422,6 +508,15 @@ document.onkeydown = function(e){
 </script>
 
 
+<script>
 
+function sairSistema(){
+
+    sessionStorage.removeItem("logado");
+
+    window.location = "login.html";
+}
+
+</script>
 </body>
 </html>
