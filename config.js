@@ -17,7 +17,7 @@ const CONFIG = {
     "https://script.google.com/macros/s/AKfycbxHciBVFEP-pYbew_qJ3eK8Q5t5HwaqCgzVYiqbuybgLJj-riJ26edaJ7Lro3XBFNr4-Q/exec",
 
     TOKEN:
-    "ESSD2026SEGURANCA"
+    "ESSD_2026_SEGURANCA_ULTRA_PRIVADA"
 
 };
 
