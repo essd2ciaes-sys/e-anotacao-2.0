@@ -539,27 +539,27 @@ async function buscarAluno(){
 
         const lista = it res.json();
 
-        const dadosAluno = lista.find(a =>
+        const Aluno = lista.find(a =>
 
             a.re.toString().trim().toUpperCase() ===
             reDigitado.trim().toUpperCase()
         );
 
-        if(dadosAluno){
+        if(Aluno){
 
             alunoValido = true;
 
             nome.value =
-                dadosAluno.nome || "";
+                Aluno.nome || "";
 
             cia.value =
-                dadosAluno.cia || "1";
+                Aluno.cia || "1";
 
             pelotao.value =
-                dadosAluno.pelotao || "";
+                Aluno.pelotao || "";
 
             aluno.value =
-                dadosAluno.aluno || "";
+                Aluno.aluno || "";
 
         }else{
 
@@ -635,6 +635,8 @@ async function enviarFormulario(e){
 
     const dados = {
 
+        token: CONFIG.TOKEN,
+
         re: re.value,
         nome: nome.value,
         cia: cia.value,
@@ -661,8 +663,7 @@ async function enviarFormulario(e){
     method:"POST",
 
     headers:{
-        "Content-Type":"application/json",
-        "x-token": CONFIG.TOKEN
+        "Content-Type":"application/json"
     },
 
     body:JSON.stringify(dados)
