@@ -535,9 +535,9 @@ async function buscarAluno(){
     try{
 
         const res =
-            await fetch(API_URL + "?tipo=alunos");
+            it fetch(API_URL + "?tipo=alunos");
 
-        const lista = await res.json();
+        const lista = it res.json();
 
         const dadosAluno = lista.find(a =>
 
@@ -656,14 +656,17 @@ async function enviarFormulario(e){
         cargo: cargo.value
     };
 
-    await fetch(API_URL,{
+    await fetch(API_URL, {
 
-        method:"POST",
+    method:"POST",
 
-        body:JSON.stringify(dados),
+    headers:{
+        "Content-Type":"application/json",
+        "x-token": CONFIG.TOKEN
+    },
 
-        mode:"no-cors"
-    });
+    body:JSON.stringify(dados)
+});
 
     alert("Registro enviado com sucesso!");
 
