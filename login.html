@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - E-Anotação 2.0</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1F2937
+    );
+
+    height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.login-box{
+
+    width:100%;
+    max-width:420px;
+
+    background:#1F2937;
+
+    padding:50px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.35);
+
+    color:white;
+
+    text-align:center;
+}
+
+.logo{
+
+    height:90px;
+
+    margin-bottom:20px;
+}
+
+h1{
+
+    font-size:32px;
+
+    margin-bottom:10px;
+}
+
+.sub{
+
+    color:#D1D5DB;
+
+    margin-bottom:30px;
+}
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#374151;
+
+    color:white;
+
+    font-size:16px;
+}
+
+input:focus{
+
+    outline:none;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,.25);
+}
+
+button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+}
+
+.aviso{
+
+    margin-top:24px;
+
+    color:#9CA3AF;
+
+    font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<img src="logo_pm.png" class="logo">
+
+<h1>E-Anotação 2.0</h1>
+
+<div class="sub">
+Sistema de Controle de Conduta Escolar
+</div>
+
+<input
+type="password"
+id="senha"
+placeholder="Digite a senha institucional"
+>
+
+<button onclick="entrar()">
+ENTRAR
+</button>
+
+<div class="aviso">
+Acesso restrito à ESSD
+</div>
+
+</div>
+
+<script>
+
+function entrar(){
+
+    const senha =
+    document.getElementById("senha").value;
+
+    // SENHA PRINCIPAL
+
+    if(senha === "essd2026pm*"){
+
+        sessionStorage.setItem(
+            "logado",
+            "sim"
+        );
+
+        window.location =
+        "index.html";
+
+    }else{
+
+        alert("Senha inválida.");
+    }
+}
+
+</script>
+
+</body>
+</html>
