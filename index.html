@@ -255,6 +255,42 @@ footer{
         padding:24px;
     }
 }
+```css id="yrh7cr"
+.btn-sair{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #991B1B,
+        #7F1D1D
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.btn-sair:hover{
+
+    transform:translateY(-2px);
+}
+```
 
 </style>
 </head>
@@ -322,6 +358,11 @@ footer{
 
     </div>
 
+    <button onclick="sair()" class="btn-sair">
+    SAIR DO SISTEMA
+    </button>
+
+
     <!-- FOOTER -->
 
    <footer>
@@ -341,6 +382,19 @@ footer{
 
 </footer>
 </div>
+
+<script>
+
+function sair(){
+
+    sessionStorage.clear();
+
+    window.location =
+    "login.html";
+}
+
+</script>
+
 
 </body>
 </html>
