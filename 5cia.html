@@ -636,7 +636,6 @@ async function enviarFormulario(e){
 
     const dados = {
 
-
         re: re.value,
         nome: nome.value,
         cia: cia.value,
@@ -658,50 +657,18 @@ async function enviarFormulario(e){
         cargo: cargo.value
     };
 
-    try{
+    await fetch(API_URL,{
 
-        const resposta = await fetch(API_URL, {
+        method:"POST",
 
-            method:"POST",
+        body:JSON.stringify(dados),
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+        mode:"no-cors"
+    });
 
-            body:JSON.stringify(dados)
+    alert("Registro enviado com sucesso!");
 
-        });
-
-        const texto =
-        await resposta.text();
-
-        console.log(texto);
-
-        if(texto == "OK"){
-
-            alert(
-                "Registro enviado com sucesso!"
-            );
-
-            document
-            .querySelector("form")
-            .reset();
-
-        }else{
-
-            alert(
-                "Erro ao registrar: " + texto
-            );
-        }
-
-    }catch(erro){
-
-        console.log(erro);
-
-        alert(
-            "Erro de conexão com servidor."
-        );
-    }
+    document.querySelector("form").reset();
 }
 </script>
 
