@@ -534,10 +534,11 @@ async function buscarAluno(){
 
     try{
 
-        const res =
-            it fetch(API_URL + "?tipo=alunos");
+       const res =
+          await fetch(API_URL + "?tipo=alunos");
 
-        const lista = it res.json();
+       const lista =
+          await res.json();
 
         const Aluno = lista.find(a =>
 
