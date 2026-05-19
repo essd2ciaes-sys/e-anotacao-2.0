@@ -659,7 +659,7 @@ async function enviarFormulario(e){
         cargo: cargo.value
     };
 
-    await fetch(API_URL, {
+    const resposta = await fetch(API_URL, {
 
     method:"POST",
 
@@ -670,11 +670,21 @@ async function enviarFormulario(e){
     body:JSON.stringify(dados)
 });
 
+const texto =
+await resposta.text();
+
+if(texto === "OK"){
+
     alert("Registro enviado com sucesso!");
 
-    document.querySelector("form").reset();
-}
+    document
+    .querySelector("form")
+    .reset();
 
+}else{
+
+    alert("Erro ao registrar: " + texto);
+}
 </script>
 
 </head>
