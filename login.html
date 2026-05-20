@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -54,6 +55,8 @@ body{
     color:white;
 
     text-align:center;
+
+    position:relative;
 }
 
 .logo{
@@ -75,6 +78,21 @@ h1{
     color:#D1D5DB;
 
     margin-bottom:30px;
+}
+
+label{
+
+    display:block;
+
+    text-align:left;
+
+    margin-bottom:8px;
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    font-weight:600;
 }
 
 input{
@@ -106,7 +124,7 @@ button{
 
     width:100%;
 
-    margin-top:20px;
+    margin-top:24px;
 
     padding:16px;
 
@@ -137,6 +155,20 @@ button:hover{
     transform:translateY(-2px);
 }
 
+.link{
+
+    margin-top:22px;
+
+    font-size:14px;
+}
+
+.link a{
+
+    color:#60A5FA;
+
+    text-decoration:none;
+}
+
 .aviso{
 
     margin-top:24px;
@@ -162,15 +194,37 @@ button:hover{
 Sistema de Controle de Conduta Escolar
 </div>
 
+<label>
+CPF ou E-mail Institucional
+</label>
+
+<input
+type="text"
+id="login"
+placeholder="Digite CPF ou e-mail"
+>
+
+<label>
+Senha
+</label>
+
 <input
 type="password"
 id="senha"
-placeholder="Digite a senha institucional"
+placeholder="Digite sua senha"
 >
 
 <button onclick="entrar()">
 ENTRAR
 </button>
+
+<div class="link">
+
+<a href="cadastro.html">
+Cadastrar novo usuário
+</a>
+
+</div>
 
 <div class="aviso">
 Acesso restrito à ESSD
@@ -180,54 +234,121 @@ Acesso restrito à ESSD
 
 <script>
 
-function entrar(){
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzcKtTNjF4YEirv6fPD_3nLX-PSK94YvkFxVsVsuUmvZ7KlY74TlT9kC4ALtYTrCKUG/exec";
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+async function entrar(){
+
+    const login =
+    document.getElementById("login")
+    .value
+    .trim();
 
     const senha =
-    document.getElementById("senha").value;
+    document.getElementById("senha")
+    .value
+    .trim();
 
-    // SENHA PRINCIPAL
+    if(!login || !senha){
 
-    if(senha === "essd2026pm*"){
-
-        sessionStorage.setItem(
-            "logado",
-            "sim"
+        alert(
+            "Preencha login e senha."
         );
 
-        window.location =
-        "index.html";
+        return;
+    }
 
-    }else{
+    try{
 
-        alert("Senha inválida.");
+        const resposta =
+        await fetch(API_URL,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                action:"login",
+
+                login:login,
+
+                senha:senha
+            })
+        });
+
+        const dados =
+        await resposta.json();
+
+        console.log(dados);
+
+        if(dados.status == "ok"){
+
+            // =========================
+            // SESSÃO
+            // =========================
+
+            sessionStorage.setItem(
+                "logado",
+                "sim"
+            );
+
+            // =========================
+            // DADOS USUÁRIO
+            // =========================
+
+            sessionStorage.setItem(
+                "usuario_nome",
+                dados.nome
+            );
+
+            sessionStorage.setItem(
+                "usuario_re",
+                dados.re
+            );
+
+            sessionStorage.setItem(
+                "usuario_cargo",
+                dados.cargo
+            );
+
+            sessionStorage.setItem(
+                "usuario_email",
+                dados.email
+            );
+
+            // =========================
+            // REDIRECIONAR
+            // =========================
+
+            window.location =
+            "index.html";
+
+        }else{
+
+            alert(
+                dados.erro ||
+                "Login inválido."
+            );
+        }
+
+    }catch(erro){
+
+        console.log(erro);
+
+        alert(
+            "Erro de conexão."
+        );
     }
 }
 
 </script>
-<script>
 
-document.addEventListener(
-"contextmenu",
-e => e.preventDefault()
-);
-
-document.onkeydown = function(e){
-
-    if(e.keyCode == 123){
-
-        return false;
-    }
-
-    if(
-        e.ctrlKey &&
-        e.shiftKey &&
-        e.keyCode == 'I'.charCodeAt(0)
-    ){
-
-        return false;
-    }
-}
-
-</script>
 </body>
 </html>
