@@ -231,6 +231,7 @@ Acesso restrito à ESSD
 </div>
 
 </div>
+<script src="config.js"></script>
 
 <script>
 
@@ -284,23 +285,25 @@ async function entrar(){
                 senha:senha
 
             })
+
         });
 
-        const dados =
-        await resposta.json();
+        const texto =
+        await resposta.text();
 
-        console.log(dados);
+        console.log(texto);
+
+        const dados =
+        JSON.parse(texto);
 
         if(dados.status == "ok"){
 
-            // LOGIN
+            // LOGIN OK
 
             sessionStorage.setItem(
                 "logado",
                 "sim"
             );
-
-            // DADOS USUÁRIO
 
             sessionStorage.setItem(
                 "usuario_nome",
@@ -321,8 +324,6 @@ async function entrar(){
                 "usuario_email",
                 dados.email
             );
-
-            // REDIRECIONAR
 
             window.location =
             "index.html";
