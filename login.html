@@ -267,24 +267,30 @@ async function entrar(){
 
     try{
 
+        const formData =
+        new URLSearchParams();
+
+        formData.append(
+            "action",
+            "login"
+        );
+
+        formData.append(
+            "login",
+            login
+        );
+
+        formData.append(
+            "senha",
+            senha
+        );
+
         const resposta =
         await fetch(API_URL,{
 
             method:"POST",
 
-            headers:{
-                "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify({
-
-                action:"login",
-
-                login:login,
-
-                senha:senha
-
-            })
+            body:formData
 
         });
 
@@ -297,8 +303,6 @@ async function entrar(){
         JSON.parse(texto);
 
         if(dados.status == "ok"){
-
-            // LOGIN OK
 
             sessionStorage.setItem(
                 "logado",
@@ -341,7 +345,7 @@ async function entrar(){
         console.log(erro);
 
         alert(
-            "Erro de conexão com servidor."
+            "Erro de conexão."
         );
     }
 }
