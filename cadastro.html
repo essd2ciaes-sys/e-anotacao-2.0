@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cadastro - E-Anotação 2.0</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1F2937
+    );
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+}
+
+.box{
+
+    width:100%;
+    max-width:520px;
+
+    background:#1F2937;
+
+    padding:40px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.35);
+
+    color:white;
+}
+
+.logo{
+
+    height:90px;
+
+    display:block;
+
+    margin:auto;
+
+    margin-bottom:20px;
+}
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:10px;
+}
+
+.sub{
+
+    text-align:center;
+
+    color:#D1D5DB;
+
+    margin-bottom:30px;
+}
+
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#374151;
+
+    color:white;
+
+    font-size:15px;
+}
+
+input:focus{
+
+    outline:none;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,.25);
+}
+
+button{
+
+    width:100%;
+
+    margin-top:28px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    opacity:.95;
+}
+
+.link{
+
+    margin-top:20px;
+
+    text-align:center;
+}
+
+a{
+
+    color:#60A5FA;
+
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<img src="logo_pm.png" class="logo">
+
+<h1>Cadastro de Usuário</h1>
+
+<div class="sub">
+Sistema E-Anotação 2.0
+</div>
+
+<label>Nome Completo</label>
+
+<input
+id="nome"
+type="text"
+>
+
+<label>CPF</label>
+
+<input
+id="cpf"
+type="text"
+maxlength="11"
+>
+
+<label>E-mail Institucional</label>
+
+<input
+id="email"
+type="email"
+placeholder="usuario@policiamilitar.sp.gov.br"
+>
+
+<label>RE</label>
+
+<input
+id="re"
+type="text"
+maxlength="8"
+>
+
+<label>Cargo/Função</label>
+
+<input
+id="cargo"
+type="text"
+>
+
+<label>Senha</label>
+
+<input
+id="senha"
+type="password"
+>
+
+<label>Confirmar Senha</label>
+
+<input
+id="confirmar"
+type="password"
+>
+
+<button onclick="cadastrar()">
+CADASTRAR
+</button>
+
+<div class="link">
+
+<a href="login.html">
+Voltar para login
+</a>
+
+</div>
+
+</div>
+
+<script src="config.js"></script>
+
+<script>
+
+async function cadastrar(){
+
+    const nome =
+    document.getElementById("nome").value.trim();
+
+    const cpf =
+    document.getElementById("cpf").value.trim();
+
+    const email =
+    document.getElementById("email").value.trim();
+
+    const re =
+    document.getElementById("re").value.trim();
+
+    const cargo =
+    document.getElementById("cargo").value.trim();
+
+    const senha =
+    document.getElementById("senha").value;
+
+    const confirmar =
+    document.getElementById("confirmar").value;
+
+    // VALIDAR CAMPOS
+
+    if(
+        !nome ||
+        !cpf ||
+        !email ||
+        !re ||
+        !cargo ||
+        !senha
+    ){
+
+        alert("Preencha todos os campos.");
+
+        return;
+    }
+
+    // VALIDAR EMAIL
+
+    if(
+        !email.endsWith(
+            "@policiamilitar.sp.gov.br"
+        )
+    ){
+
+        alert(
+            "Utilize o e-mail institucional."
+        );
+
+        return;
+    }
+
+    // VALIDAR SENHAS
+
+    if(senha !== confirmar){
+
+        alert(
+            "As senhas não coincidem."
+        );
+
+        return;
+    }
+
+    // ENVIAR
+
+    try{
+
+        await fetch(
+
+            CONFIG.API_USUARIOS,
+
+            {
+
+                method:"POST",
+
+                body:JSON.stringify({
+
+                    action:"cadastro",
+
+                    nome:nome,
+                    cpf:cpf,
+                    email:email,
+                    re:re,
+                    cargo:cargo,
+                    senha:senha
+
+                }),
+
+                mode:"no-cors"
+            }
+        );
+
+        alert(
+            "Cadastro enviado com sucesso."
+        );
+
+        window.location =
+        "login.html";
+
+    }catch(erro){
+
+        console.log(erro);
+
+        alert(
+            "Erro de conexão."
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
