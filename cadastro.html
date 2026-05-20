@@ -298,7 +298,7 @@ async function cadastrar(){
     .value;
 
     // =================================================
-    // VALIDAR CAMPOS
+    // VALIDAR
     // =================================================
 
     if(
@@ -319,10 +319,6 @@ async function cadastrar(){
         return;
     }
 
-    // =================================================
-    // VALIDAR EMAIL
-    // =================================================
-
     if(
 
         !email.endsWith(
@@ -337,10 +333,6 @@ async function cadastrar(){
 
         return;
     }
-
-    // =================================================
-    // VALIDAR SENHAS
-    // =================================================
 
     if(senha !== confirmar){
 
@@ -357,44 +349,6 @@ async function cadastrar(){
 
     try{
 
-        const formData =
-        new URLSearchParams();
-
-        formData.append(
-            "action",
-            "cadastro"
-        );
-
-        formData.append(
-            "nome",
-            nome
-        );
-
-        formData.append(
-            "cpf",
-            cpf
-        );
-
-        formData.append(
-            "email",
-            email
-        );
-
-        formData.append(
-            "re",
-            re
-        );
-
-        formData.append(
-            "cargo",
-            cargo
-        );
-
-        formData.append(
-            "senha",
-            senha
-        );
-
         const resposta =
         await fetch(
 
@@ -404,7 +358,22 @@ async function cadastrar(){
 
                 method:"POST",
 
-                body:formData
+                headers:{
+                    "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body:JSON.stringify({
+
+                    action:"cadastro",
+
+                    nome:nome,
+                    cpf:cpf,
+                    email:email,
+                    re:re,
+                    cargo:cargo,
+                    senha:senha
+                })
             }
         );
 
