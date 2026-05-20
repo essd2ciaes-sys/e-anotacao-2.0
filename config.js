@@ -16,6 +16,9 @@ const CONFIG = {
     API_5CIA:
     "https://script.google.com/macros/s/AKfycbxHciBVFEP-pYbew_qJ3eK8Q5t5HwaqCgzVYiqbuybgLJj-riJ26edaJ7Lro3XBFNr4-Q/exec",
 
+    API_USUARIOS:
+    "https://script.google.com/macros/s/AKfycbzcKtTNjF4YEirv6fPD_3nLX-PSK94YvkFxVsVsuUmvZ7KlY74TlT9kC4ALtYTrCKUG/exec"
+
     
 };
 
