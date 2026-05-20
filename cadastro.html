@@ -258,73 +258,50 @@ Voltar para login
 async function cadastrar(){
 
     const nome =
-    document
-    .getElementById("nome")
-    .value
-    .trim();
+    document.getElementById("nome").value.trim();
 
     const cpf =
-    document
-    .getElementById("cpf")
-    .value
-    .trim();
+    document.getElementById("cpf").value.trim();
 
     const email =
-    document
-    .getElementById("email")
-    .value
-    .trim();
+    document.getElementById("email").value.trim();
 
     const re =
-    document
-    .getElementById("re")
-    .value
-    .trim();
+    document.getElementById("re").value.trim();
 
     const cargo =
-    document
-    .getElementById("cargo")
-    .value
-    .trim();
+    document.getElementById("cargo").value.trim();
 
     const senha =
-    document
-    .getElementById("senha")
-    .value;
+    document.getElementById("senha").value;
 
     const confirmar =
-    document
-    .getElementById("confirmar")
-    .value;
+    document.getElementById("confirmar").value;
 
-    // =================================================
+    // =========================================
     // VALIDAR
-    // =================================================
+    // =========================================
 
     if(
-
         !nome ||
         !cpf ||
         !email ||
         !re ||
         !cargo ||
         !senha
-
     ){
 
-        alert(
-            "Preencha todos os campos."
-        );
+        alert("Preencha todos os campos.");
 
         return;
     }
 
-    if(
+    // EMAIL INSTITUCIONAL
 
+    if(
         !email.endsWith(
             "@policiamilitar.sp.gov.br"
         )
-
     ){
 
         alert(
@@ -333,6 +310,8 @@ async function cadastrar(){
 
         return;
     }
+
+    // SENHAS
 
     if(senha !== confirmar){
 
@@ -343,9 +322,51 @@ async function cadastrar(){
         return;
     }
 
-    // =================================================
+    // =========================================
+    // FORM DATA
+    // =========================================
+
+    const formData =
+    new URLSearchParams();
+
+    formData.append(
+        "action",
+        "cadastro"
+    );
+
+    formData.append(
+        "nome",
+        nome
+    );
+
+    formData.append(
+        "cpf",
+        cpf
+    );
+
+    formData.append(
+        "email",
+        email
+    );
+
+    formData.append(
+        "re",
+        re
+    );
+
+    formData.append(
+        "cargo",
+        cargo
+    );
+
+    formData.append(
+        "senha",
+        senha
+    );
+
+    // =========================================
     // ENVIAR
-    // =================================================
+    // =========================================
 
     try{
 
@@ -358,32 +379,14 @@ async function cadastrar(){
 
                 method:"POST",
 
-                headers:{
-                    "Content-Type":
-                    "text/plain;charset=utf-8"
-                },
-
-                body:JSON.stringify({
-
-                    action:"cadastro",
-
-                    nome:nome,
-                    cpf:cpf,
-                    email:email,
-                    re:re,
-                    cargo:cargo,
-                    senha:senha
-                })
+                body:formData
             }
         );
 
-        const texto =
-        await resposta.text();
-
-        console.log(texto);
-
         const dados =
-        JSON.parse(texto);
+        await resposta.json();
+
+        console.log(dados);
 
         if(dados.status == "ok"){
 
