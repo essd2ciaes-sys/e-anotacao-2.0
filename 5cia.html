@@ -537,44 +537,41 @@ async function buscarAluno(){
 }
 
 // =========================
-// BUSCAR ANOTANTE
+// USUÁRIO LOGADO
 // =========================
 
-async function buscarAnotante(){
+window.onload = function(){
 
-    const re =
-        document.getElementById("re_anotante").value;
+    const usuario =
+    JSON.parse(
 
-    if(re.length < 8) return;
+        sessionStorage.getItem(
+            "usuario"
+        )
+    );
 
-    try{
+    if(!usuario){
 
-        const res =
-            await fetch(API_URL + "?tipo=anotantes");
+        window.location =
+        "login.html";
 
-        const lista =
-            await res.json();
-
-        const anot = lista.find(a =>
-
-            a.re.trim().toUpperCase() ===
-            re.trim().toUpperCase()
-        );
-
-        if(anot){
-
-            anotante.value =
-                anot.nome;
-
-            cargo.value =
-                anot.cargo;
-        }
-
-    }catch(e){
-
-        console.log(e);
+        return;
     }
+
+    document.getElementById(
+        "re_anotante"
+    ).value = usuario.re;
+
+    document.getElementById(
+        "anotante"
+    ).value = usuario.nome;
+
+    document.getElementById(
+        "cargo"
+    ).value = usuario.cargo;
 }
+
+
 
 // =========================
 // ENVIAR
@@ -784,9 +781,7 @@ required
 <input
 id="re_anotante"
 maxlength="8"
-pattern="[0-9]{6}-[A-Z0-9]"
-oninput="formatarRE(this)"
-onblur="buscarAnotante()"
+readonly
 required
 >
 
@@ -795,7 +790,7 @@ required
 <input
 id="anotante"
 maxlength="50"
-oninput="apenasLetras(event)"
+readonly
 required
 >
 
@@ -804,7 +799,7 @@ required
 <input
 id="cargo"
 maxlength="30"
-oninput="apenasLetras(event)"
+readonly
 required
 >
 
