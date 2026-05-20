@@ -302,44 +302,73 @@ async function entrar(){
         const dados =
         JSON.parse(texto);
 
-        if(dados.status == "ok"){
+      if(dados.status == "ok"){
 
-            sessionStorage.setItem(
-                "logado",
-                "sim"
-            );
+    // =========================
+    // LOGIN
+    // =========================
 
-            sessionStorage.setItem(
-                "usuario_nome",
-                dados.nome
-            );
+    sessionStorage.setItem(
+        "logado",
+        "sim"
+    );
 
-            sessionStorage.setItem(
-                "usuario_re",
-                dados.re
-            );
+    // =========================
+    // DADOS DO USUÁRIO
+    // =========================
 
-            sessionStorage.setItem(
-                "usuario_cargo",
-                dados.cargo
-            );
+    sessionStorage.setItem(
 
-            sessionStorage.setItem(
-                "usuario_email",
-                dados.email
-            );
+        "usuario",
 
-            window.location =
-            "index.html";
+        JSON.stringify({
 
-        }else{
+            nome:dados.nome,
+            cpf:dados.cpf,
+            email:dados.email,
+            re:dados.re,
+            cargo:dados.cargo
 
-            alert(
-                dados.erro ||
-                "Usuário ou senha inválidos."
-            );
-        }
+        })
+    );
 
+    // OPCIONAL
+    // MANTER INDIVIDUAL TAMBÉM
+
+    sessionStorage.setItem(
+        "usuario_nome",
+        dados.nome
+    );
+
+    sessionStorage.setItem(
+        "usuario_re",
+        dados.re
+    );
+
+    sessionStorage.setItem(
+        "usuario_cargo",
+        dados.cargo
+    );
+
+    sessionStorage.setItem(
+        "usuario_email",
+        dados.email
+    );
+
+    // =========================
+    // REDIRECIONAR
+    // =========================
+
+    window.location =
+    "index.html";
+
+}else{
+
+    alert(
+        dados.erro ||
+        "Usuário ou senha inválidos."
+    );
+}
     }catch(erro){
 
         console.log(erro);
