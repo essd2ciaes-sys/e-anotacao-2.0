@@ -55,8 +55,6 @@ body{
     color:white;
 
     text-align:center;
-
-    position:relative;
 }
 
 .logo{
@@ -158,8 +156,6 @@ button:hover{
 .link{
 
     margin-top:22px;
-
-    font-size:14px;
 }
 
 .link a{
@@ -167,6 +163,8 @@ button:hover{
     color:#60A5FA;
 
     text-decoration:none;
+
+    font-size:14px;
 }
 
 .aviso{
@@ -179,6 +177,8 @@ button:hover{
 }
 
 </style>
+
+<script src="config.js"></script>
 
 </head>
 
@@ -235,7 +235,7 @@ Acesso restrito à ESSD
 <script>
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbzcKtTNjF4YEirv6fPD_3nLX-PSK94YvkFxVsVsuUmvZ7KlY74TlT9kC4ALtYTrCKUG/exec";
+CONFIG.API_USUARIOS;
 
 /* =====================================================
    LOGIN
@@ -244,12 +244,14 @@ const API_URL =
 async function entrar(){
 
     const login =
-    document.getElementById("login")
+    document
+    .getElementById("login")
     .value
     .trim();
 
     const senha =
-    document.getElementById("senha")
+    document
+    .getElementById("senha")
     .value
     .trim();
 
@@ -280,6 +282,7 @@ async function entrar(){
                 login:login,
 
                 senha:senha
+
             })
         });
 
@@ -290,18 +293,14 @@ async function entrar(){
 
         if(dados.status == "ok"){
 
-            // =========================
-            // SESSÃO
-            // =========================
+            // LOGIN
 
             sessionStorage.setItem(
                 "logado",
                 "sim"
             );
 
-            // =========================
             // DADOS USUÁRIO
-            // =========================
 
             sessionStorage.setItem(
                 "usuario_nome",
@@ -323,9 +322,7 @@ async function entrar(){
                 dados.email
             );
 
-            // =========================
             // REDIRECIONAR
-            // =========================
 
             window.location =
             "index.html";
@@ -334,7 +331,7 @@ async function entrar(){
 
             alert(
                 dados.erro ||
-                "Login inválido."
+                "Usuário ou senha inválidos."
             );
         }
 
@@ -343,8 +340,34 @@ async function entrar(){
         console.log(erro);
 
         alert(
-            "Erro de conexão."
+            "Erro de conexão com servidor."
         );
+    }
+}
+
+</script>
+
+<script>
+
+document.addEventListener(
+"contextmenu",
+e => e.preventDefault()
+);
+
+document.onkeydown = function(e){
+
+    if(e.keyCode == 123){
+
+        return false;
+    }
+
+    if(
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.keyCode == 'I'.charCodeAt(0)
+    ){
+
+        return false;
     }
 }
 
