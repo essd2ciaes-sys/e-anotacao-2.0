@@ -190,6 +190,7 @@ Sistema E-Anotação 2.0
 <input
 id="nome"
 type="text"
+oninput="maiusculas(event)"
 >
 
 <label>CPF</label>
@@ -197,7 +198,9 @@ type="text"
 <input
 id="cpf"
 type="text"
-maxlength="11"
+maxlength="14"
+oninput="formatarCPF(this)"
+placeholder="000.000.000-00"
 >
 
 <label>E-mail Institucional</label>
@@ -205,6 +208,7 @@ maxlength="11"
 <input
 id="email"
 type="email"
+oninput="formatarEmail(event)"
 placeholder="usuario@policiamilitar.sp.gov.br"
 >
 
@@ -214,6 +218,8 @@ placeholder="usuario@policiamilitar.sp.gov.br"
 id="re"
 type="text"
 maxlength="8"
+oninput="formatarRE(this)"
+placeholder="123456-A"
 >
 
 <label>Cargo/Função</label>
@@ -221,6 +227,7 @@ maxlength="8"
 <input
 id="cargo"
 type="text"
+oninput="maiusculas(event)"
 >
 
 <label>Senha</label>
@@ -254,7 +261,75 @@ Voltar para login
 <script src="config.js"></script>
 
 <script>
+// =========================
+// CPF
+// =========================
 
+function formatarCPF(campo){
+
+    let v =
+    campo.value.replace(/\D/g,'');
+
+    v = v.replace(
+        /(\d{3})(\d)/,
+        '$1.$2'
+    );
+
+    v = v.replace(
+        /(\d{3})(\d)/,
+        '$1.$2'
+    );
+
+    v = v.replace(
+        /(\d{3})(\d{1,2})$/,
+        '$1-$2'
+    );
+
+    campo.value = v;
+}
+
+// =========================
+// RE
+// =========================
+
+function formatarRE(campo){
+
+    let v = campo.value
+        .toUpperCase()
+        .replace(/[^0-9A-Z]/g,'');
+
+    if(v.length > 6){
+
+        campo.value =
+            v.substring(0,6) +
+            '-' +
+            v.substring(6,7);
+
+    }else{
+
+        campo.value = v;
+    }
+}
+
+// =========================
+// MAIÚSCULAS
+// =========================
+
+function maiusculas(e){
+
+    e.target.value =
+    e.target.value.toUpperCase();
+}
+
+// =========================
+// EMAIL
+// =========================
+
+function formatarEmail(e){
+
+    e.target.value =
+    e.target.value.toLowerCase();
+}
 async function cadastrar(){
 
     const nome =
@@ -321,7 +396,18 @@ async function cadastrar(){
 
         return;
     }
+// =========================================
+// SENHA MÍNIMA
+// =========================================
 
+if(senha.length < 6){
+
+    alert(
+        "A senha deve ter no mínimo 6 caracteres."
+    );
+
+    return;
+}
     // =========================================
     // FORM DATA
     // =========================================
