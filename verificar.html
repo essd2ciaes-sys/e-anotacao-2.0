@@ -185,8 +185,12 @@ async function verificar(){
 
     try{
 
+        // =====================================
+        // FORM DATA
+        // =====================================
+
         const formData =
-        new FormData();
+        new URLSearchParams();
 
         formData.append(
             "action",
@@ -203,6 +207,10 @@ async function verificar(){
             codigo
         );
 
+        // =====================================
+        // ENVIAR
+        // =====================================
+
         const resposta =
         await fetch(
 
@@ -217,13 +225,22 @@ async function verificar(){
             }
         );
 
+        const texto =
+        await resposta.text();
+
+        console.log(texto);
+
         const dados =
-        await resposta.json();
+        JSON.parse(texto);
 
         if(dados.status == "ok"){
 
             alert(
                 "E-mail validado com sucesso."
+            );
+
+            localStorage.removeItem(
+                "email_verificacao"
             );
 
             window.location =
@@ -246,7 +263,6 @@ async function verificar(){
         );
     }
 }
-
 </script>
 
 </body>
