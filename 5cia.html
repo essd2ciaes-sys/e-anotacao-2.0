@@ -540,7 +540,7 @@ async function buscarAluno(){
 // USUÁRIO LOGADO
 // =========================
 
-window.onload = function(){
+function preencherUsuarioLogado(){
 
     const usuario =
     JSON.parse(
@@ -571,11 +571,10 @@ window.onload = function(){
     ).value = usuario.cargo;
 }
 
+window.onload = function(){
 
-
-// =========================
-// ENVIAR
-// =========================
+    preencherUsuarioLogado();
+}
 
 async function enviarFormulario(e){
 
@@ -611,18 +610,55 @@ async function enviarFormulario(e){
         cargo: cargo.value
     };
 
-    await fetch(API_URL,{
+    try{
 
-        method:"POST",
+        await fetch(API_URL,{
 
-        body:JSON.stringify(dados),
+            method:"POST",
 
-        mode:"no-cors"
-    });
+            body:JSON.stringify(dados),
 
-    alert("Registro enviado com sucesso!");
+            mode:"no-cors"
+        });
 
-    document.querySelector("form").reset();
+        alert("Registro enviado com sucesso!");
+
+        // =========================
+        // RESET FORMULÁRIO
+        // =========================
+
+        document.querySelector(
+            "form"
+        ).reset();
+
+        // =========================
+        // RESETAR VALIDAÇÃO
+        // =========================
+
+        alunoValido = false;
+
+        // =========================
+        // RESTAURAR USUÁRIO LOGADO
+        // =========================
+
+        preencherUsuarioLogado();
+
+        // =========================
+        // FOCAR NO RE
+        // =========================
+
+        document.getElementById(
+            "re"
+        ).focus();
+
+    }catch(erro){
+
+        console.log(erro);
+
+        alert(
+            "Erro ao enviar registro."
+        );
+    }
 }
 </script>
 
