@@ -603,7 +603,7 @@ async function enviarFormulario(e){
 
         codigo: codigo.value,
 
-        ciencia: ciencia.value,
+        ciencia: ciencia.value || "",
 
         anotante: anotante.value,
 
@@ -863,7 +863,6 @@ required
 <input
 id="ciencia"
 type="datetime-local"
-required
 >
 
 <label>RE Anotante</label>
@@ -884,7 +883,7 @@ readonly
 required
 >
 
-<label>Cargo/Função</label>
+<label>Graduação/Função</label>
 
 <input
 id="cargo"
