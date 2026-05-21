@@ -574,6 +574,8 @@ function preencherUsuarioLogado(){
 window.onload = function(){
 
     preencherUsuarioLogado();
+   
+    preencherDataHoraAtual();
 }
 
 async function enviarFormulario(e){
@@ -641,7 +643,9 @@ async function enviarFormulario(e){
         // RESTAURAR USUÁRIO LOGADO
         // =========================
 
-        preencherUsuarioLogado();
+       preencherUsuarioLogado();
+
+       preencherDataHoraAtual();
 
         // =========================
         // FOCAR NO RE
@@ -659,6 +663,40 @@ async function enviarFormulario(e){
             "Erro ao enviar registro."
         );
     }
+}
+
+// =========================
+// DATA/HORA AUTOMÁTICA
+// =========================
+
+function preencherDataHoraAtual(){
+
+    const agora = new Date();
+
+    const ano = agora.getFullYear();
+
+    const mes = String(
+        agora.getMonth() + 1
+    ).padStart(2,'0');
+
+    const dia = String(
+        agora.getDate()
+    ).padStart(2,'0');
+
+    const hora = String(
+        agora.getHours()
+    ).padStart(2,'0');
+
+    const minuto = String(
+        agora.getMinutes()
+    ).padStart(2,'0');
+
+    const dataFormatada =
+        `${ano}-${mes}-${dia}T${hora}:${minuto}`;
+
+    document.getElementById(
+        "datahora"
+    ).value = dataFormatada;
 }
 </script>
 
@@ -749,10 +787,12 @@ required
 
 <label>Data e Hora da Anotação</label>
 
+<label>Data e Hora da Anotação</label>
+
 <input
 id="datahora"
 type="datetime-local"
-required
+readonly
 >
 
 <label>Descrição de Conduta Infratora</label>
