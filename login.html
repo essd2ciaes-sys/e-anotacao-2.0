@@ -240,14 +240,13 @@ const API_URL =
 CONFIG.API_USUARIOS;
 function formatarLogin(campo){
 
-    let valor =
-    campo.value;
+    let valor = campo.value;
 
     // =====================================
-    // SE FOR EMAIL
+    // SE TIVER LETRAS OU @ = EMAIL
     // =====================================
 
-    if(valor.includes("@")){
+    if(/[a-zA-Z@]/.test(valor)){
 
         campo.value =
         valor.toLowerCase();
