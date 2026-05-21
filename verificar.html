@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verificação - E-Anotação 2.0</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1F2937
+    );
+
+    height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.box{
+
+    width:100%;
+    max-width:450px;
+
+    background:#1F2937;
+
+    padding:40px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.35);
+
+    color:white;
+
+    text-align:center;
+}
+
+.logo{
+
+    height:90px;
+
+    margin-bottom:20px;
+}
+
+h1{
+
+    margin-bottom:10px;
+}
+
+.sub{
+
+    color:#D1D5DB;
+
+    margin-bottom:30px;
+
+    line-height:1.5;
+}
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#374151;
+
+    color:white;
+
+    font-size:18px;
+
+    text-align:center;
+
+    letter-spacing:4px;
+}
+
+button{
+
+    width:100%;
+
+    margin-top:24px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<img src="logo_pm.png" class="logo">
+
+<h1>Verificação de E-mail</h1>
+
+<div class="sub">
+
+Digite o código enviado
+para o e-mail institucional.
+
+</div>
+
+<input
+id="codigo"
+maxlength="6"
+placeholder="000000"
+>
+
+<button onclick="verificar()">
+VALIDAR CÓDIGO
+</button>
+
+</div>
+
+<script src="config.js"></script>
+
+<script>
+
+async function verificar(){
+
+    const codigo =
+    document.getElementById("codigo")
+    .value
+    .trim();
+
+    const email =
+    localStorage.getItem(
+        "email_verificacao"
+    );
+
+    if(!codigo){
+
+        alert(
+            "Digite o código."
+        );
+
+        return;
+    }
+
+    try{
+
+        const formData =
+        new FormData();
+
+        formData.append(
+            "action",
+            "verificar"
+        );
+
+        formData.append(
+            "email",
+            email
+        );
+
+        formData.append(
+            "codigo",
+            codigo
+        );
+
+        const resposta =
+        await fetch(
+
+            CONFIG.API_USUARIOS,
+
+            {
+
+                method:"POST",
+
+                body:formData
+
+            }
+        );
+
+        const dados =
+        await resposta.json();
+
+        if(dados.status == "ok"){
+
+            alert(
+                "E-mail validado com sucesso."
+            );
+
+            window.location =
+            "login.html";
+
+        }else{
+
+            alert(
+                dados.erro ||
+                "Código inválido."
+            );
+        }
+
+    }catch(erro){
+
+        console.log(erro);
+
+        alert(
+            "Erro de conexão."
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
