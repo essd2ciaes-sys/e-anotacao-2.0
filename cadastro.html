@@ -474,7 +474,11 @@ if(senha.length < 6){
 
         console.log(dados);
 
-        if(dados.status == "ok"){
+        if(
+            dados.status == "ok"
+            ||
+            dados.status == "codigo_enviado"
+          ){
 
             alert(
                 "Cadastro realizado com sucesso."
