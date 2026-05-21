@@ -480,8 +480,13 @@ if(senha.length < 6){
                 "Cadastro realizado com sucesso."
             );
 
+            localStorage.setItem(
+                "email_verificacao",
+                email
+            );
+
             window.location =
-            "login.html";
+            "verificar.html";
 
         }else{
 
