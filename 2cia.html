@@ -35,7 +35,7 @@ if(
 }
 
 /* =========================
-   TEMA 1ª CIA
+   TEMA 2ª CIA
 ========================= */
 
 :root{
@@ -308,11 +308,25 @@ button{
 
     margin-top:30px;
 
-    border:none;
-
     padding:18px;
 
+    border:none;
+
     border-radius:14px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    color:white;
+
+    cursor:pointer;
 
     background:linear-gradient(
         135deg,
@@ -320,21 +334,39 @@ button{
         var(--primary-dark)
     );
 
-    color:white;
-
-    font-size:16px;
-    font-weight:700;
-
-    letter-spacing:.5px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
     box-shadow:
         0 8px 18px rgba(0,0,0,.18);
+
+    transition:
+        transform .25s,
+        opacity .25s,
+        filter .25s;
 }
 
+button:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+ 
+button:active{
+
+    transform:
+        translateY(1px)
+        scale(.98);
+}
+
+ button:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    filter:grayscale(.2);
+}
 /* =========================
    BOTÃO VOLTAR
 ========================= */
@@ -377,8 +409,6 @@ button{
 
     opacity:.95;
 }
-
-
 /* =========================
    FOOTER
 ========================= */
@@ -560,8 +590,11 @@ function preencherUsuarioLogado(){
     ).value = usuario.re;
 
     document.getElementById(
-        "anotante"
-    ).value = usuario.nome;
+    "anotante"
+   ).value =
+   usuario.cargo + " " +
+   usuario.nome;
+
 
     document.getElementById(
         "cargo"
@@ -578,6 +611,21 @@ window.onload = function(){
 async function enviarFormulario(e){
 
     e.preventDefault();
+
+   const botao =
+   document.getElementById(
+    "btnEnviar"
+   );
+
+   if(botao.disabled){
+
+    return;
+   }
+
+   botao.disabled = true;
+
+   botao.innerText =
+   "ENVIANDO...";
 
     if(!alunoValido){
 
@@ -621,6 +669,11 @@ async function enviarFormulario(e){
         });
 
         alert("Registro enviado com sucesso!");
+       
+        botao.innerText =
+       "REGISTRAR OCORRÊNCIA";
+
+        botao.disabled = false;
 
         // =========================
         // RESET FORMULÁRIO
@@ -655,6 +708,11 @@ async function enviarFormulario(e){
     }catch(erro){
 
         console.log(erro);
+
+        botao.innerText =
+       "REGISTRAR OCORRÊNCIA";
+
+       botao.disabled = false;
 
         alert(
             "Erro ao enviar registro."
@@ -868,24 +926,19 @@ readonly
 required
 >
 
-<label>Anotante</label>
+<label>Graduação/Anotante</label>
 
 <input
 id="anotante"
-maxlength="50"
+maxlength="80"
 readonly
 required
 >
-
-<label>Graduação/Função</label>
 
 <input
 id="cargo"
-maxlength="30"
-readonly
-required
+type="hidden"
 >
-
 <div class="aviso">
 
 Artigo 128 da D-5-PM:
