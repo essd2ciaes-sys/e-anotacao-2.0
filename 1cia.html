@@ -308,7 +308,7 @@ button{
 
     margin-top:30px;
 
-    padding:16px;
+    padding:18px;
 
     border:none;
 
@@ -322,33 +322,51 @@ button{
 
     font-weight:700;
 
+    letter-spacing:.5px;
+
     color:white;
 
     cursor:pointer;
 
     background:linear-gradient(
-        90deg,
-        #374151,
-        #111827
+        135deg,
+        var(--primary2),
+        var(--primary-dark)
     );
 
-    box-shadow:var(--shadow);
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.18);
 
-    transition:.25s;
+    transition:
+        transform .25s,
+        opacity .25s,
+        filter .25s;
 }
 
- button:hover{
+button:hover{
 
     transform:translateY(-2px);
 
     opacity:.95;
 }
+ 
+button:active{
 
- button:active{
-
-    transform:scale(.98);
+    transform:
+        translateY(1px)
+        scale(.98);
 }
 
+ button:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    filter:grayscale(.2);
+}
 /* =========================
    BOTÃO VOLTAR
 ========================= */
