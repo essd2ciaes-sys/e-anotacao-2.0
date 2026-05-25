@@ -289,6 +289,10 @@ function formatarLogin(campo){
    LOGIN
 ==================================================== */
 
+/* =================================================
+   LOGIN
+==================================================== */
+
 async function entrar(){
 
     const login =
@@ -349,92 +353,91 @@ async function entrar(){
         const dados =
         JSON.parse(texto);
 
-      if(dados.status == "ok"){
+        // =====================================
+        // LOGIN OK
+        // =====================================
 
-    // =========================
-    // LOGIN
-    // =========================
+        if(dados.status == "ok"){
 
-    sessionStorage.setItem(
-        "logado",
-        "sim"
-    );
+            sessionStorage.setItem(
+                "logado",
+                "sim"
+            );
 
-    // =========================
-    // DADOS DO USUÁRIO
-    // =========================
+            sessionStorage.setItem(
 
-    sessionStorage.setItem(
+                "usuario",
 
-        "usuario",
+                JSON.stringify({
 
-        JSON.stringify({
+                    nome:dados.nome,
+                    cpf:dados.cpf,
+                    email:dados.email,
+                    re:dados.re,
+                    cargo:dados.cargo
 
-            nome:dados.nome,
-            cpf:dados.cpf,
-            email:dados.email,
-            re:dados.re,
-            cargo:dados.cargo
+                })
+            );
 
-        })
-    );
+            sessionStorage.setItem(
+                "usuario_nome",
+                dados.nome
+            );
 
-    // OPCIONAL
-    // MANTER INDIVIDUAL TAMBÉM
+            sessionStorage.setItem(
+                "usuario_re",
+                dados.re
+            );
 
-    sessionStorage.setItem(
-        "usuario_nome",
-        dados.nome
-    );
+            sessionStorage.setItem(
+                "usuario_cargo",
+                dados.cargo
+            );
 
-    sessionStorage.setItem(
-        "usuario_re",
-        dados.re
-    );
+            sessionStorage.setItem(
+                "usuario_email",
+                dados.email
+            );
 
-    sessionStorage.setItem(
-        "usuario_cargo",
-        dados.cargo
-    );
+            window.location =
+            "index.html";
 
-    sessionStorage.setItem(
-        "usuario_email",
-        dados.email
-    );
+            return;
+        }
 
-    // =========================
-    // REDIRECIONAR
-    // =========================
+        // =====================================
+        // RESET OBRIGATÓRIO
+        // =====================================
 
-    window.location =
-    "index.html";
+        if(
+            dados.status ==
+            "reset_obrigatorio"
+        ){
 
-}else{
+            alert(
+                "Por segurança, redefina sua senha utilizando a opção 'Esqueci minha senha'."
+            );
 
-   // =====================================
-    // RESET OBRIGATÓRIO
-    // =====================================
+            return;
+        }
 
-    if(
-        dados.status ==
-        "reset_obrigatorio"
-    ){
+        // =====================================
+        // ERRO NORMAL
+        // =====================================
 
         alert(
-            "Por segurança, redefina sua senha utilizando a opção 'Esqueci minha senha'."
+            dados.erro ||
+            "Usuário ou senha inválidos."
         );
 
-        return;
+    }catch(erro){
+
+        console.log(erro);
+
+        alert(
+            "Erro de conexão."
+        );
     }
-
-    // =====================================
-    // ERRO NORMAL
-    // =====================================
-
-    alert(
-        dados.erro ||
-        "Usuário ou senha inválidos."
-    );
 }
 
 </script>
