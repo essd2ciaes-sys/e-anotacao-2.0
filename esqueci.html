@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recuperar Senha</title>
+
+<style>
+
+body{
+
+  font-family:Arial;
+
+  background:#111827;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  height:100vh;
+
+  margin:0;
+}
+
+.box{
+
+  background:#1F2937;
+
+  padding:40px;
+
+  border-radius:20px;
+
+  width:100%;
+  max-width:420px;
+
+  color:white;
+}
+
+input{
+
+  width:100%;
+
+  padding:14px;
+
+  margin-top:15px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#374151;
+
+  color:white;
+}
+
+button{
+
+  width:100%;
+
+  margin-top:20px;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#2563EB;
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Recuperar Senha</h2>
+
+<p>
+Informe seu e-mail institucional.
+</p>
+
+<input
+id="email"
+type="email"
+placeholder="usuario@policiamilitar.sp.gov.br"
+>
+
+<button onclick="enviar()">
+ENVIAR LINK
+</button>
+
+</div>
+
+<script src="config.js"></script>
+
+<script>
+
+async function enviar(){
+
+  const email =
+  document.getElementById("email")
+  .value
+  .trim()
+  .toLowerCase();
+
+  if(
+    !email.endsWith(
+      "@policiamilitar.sp.gov.br"
+    )
+  ){
+
+    alert(
+      "Utilize o e-mail institucional."
+    );
+
+    return;
+  }
+
+  const formData =
+  new URLSearchParams();
+
+  formData.append(
+    "action",
+    "solicitar_reset"
+  );
+
+  formData.append(
+    "email",
+    email
+  );
+
+  try{
+
+    const resposta =
+    await fetch(
+
+      CONFIG.API_USUARIOS,
+
+      {
+
+        method:"POST",
+
+        body:formData
+      }
+    );
+
+    const dados =
+    await resposta.json();
+
+    if(dados.status == "ok"){
+
+      alert(
+        "Link enviado para o e-mail institucional."
+      );
+
+    }else{
+
+      alert(
+        dados.erro ||
+        "Erro."
+      );
+    }
+
+  }catch(e){
+
+    alert(
+      "Erro de conexão."
+    );
+  }
+}
+
+</script>
+
+</body>
+</html>
