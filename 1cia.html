@@ -560,9 +560,11 @@ function preencherUsuarioLogado(){
         "re_anotante"
     ).value = usuario.re;
 
-    document.getElementById(
-        "anotante"
-    ).value = usuario.nome;
+   document.getElementById(
+    "anotante"
+   ).value =
+   usuario.cargo + " " +
+   usuario.nome;
 
     document.getElementById(
         "cargo"
