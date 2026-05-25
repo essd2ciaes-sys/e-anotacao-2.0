@@ -225,6 +225,13 @@ ENTRAR
 Cadastrar novo usuário
 </a>
 
+<br><br>
+
+<a href="esqueci.html">
+Esqueci minha senha
+</a>
+
+
 </div>
 
 <div class="aviso">
@@ -404,19 +411,30 @@ async function entrar(){
 
 }else{
 
+   // =====================================
+    // RESET OBRIGATÓRIO
+    // =====================================
+
+    if(
+        dados.status ==
+        "reset_obrigatorio"
+    ){
+
+        alert(
+            "Por segurança, redefina sua senha utilizando a opção 'Esqueci minha senha'."
+        );
+
+        return;
+    }
+
+    // =====================================
+    // ERRO NORMAL
+    // =====================================
+
     alert(
         dados.erro ||
         "Usuário ou senha inválidos."
     );
-}
-    }catch(erro){
-
-        console.log(erro);
-
-        alert(
-            "Erro de conexão."
-        );
-    }
 }
 
 </script>
