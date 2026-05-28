@@ -203,7 +203,7 @@ ENVIAR LINK
 <button
 type="button"
 class="btn-voltar"
-onclick="window.location.href='login.html'"
+onclick="voltarLogin()"
 >
 VOLTAR PARA LOGIN
 </button>
@@ -286,8 +286,13 @@ async function enviar(){
       "Erro de conexão."
     );
   }
-}
+}    
+  
+function voltarLogin(){
 
+  location.replace("login.html");
+}
+  
 </script>
 
 </body>
