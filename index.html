@@ -465,7 +465,91 @@ footer{
         padding-top:20px;
     }
 }
+/* =========================
+   MENU MOBILE
+========================= */
 
+.menu-mobile-btn{
+
+    display:none;
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:14px;
+
+    background:#1F2937;
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:2000;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.35);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:768px){
+
+    .menu-mobile-btn{
+
+        display:flex;
+    }
+
+    .topo-acoes{
+
+        position:fixed;
+
+        top:80px;
+
+        right:20px;
+
+        flex-direction:column;
+
+        background:#1F2937;
+
+        padding:16px;
+
+        border-radius:18px;
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,.35);
+
+        display:none;
+
+        min-width:220px;
+    }
+
+    .topo-acoes.ativo{
+
+        display:flex;
+    }
+
+    .usuario-logado{
+
+        text-align:center;
+    }
+}
 </style>
 </head>
 
@@ -644,6 +728,16 @@ document.onkeydown = function(e){
 }
 
 </script>
+<script>
 
+function toggleMenu(){
+
+    document
+    .getElementById("menuTopo")
+    .classList
+    .toggle("ativo");
+}
+
+</script>
 </body>
 </html>
