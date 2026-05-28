@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- <script>
+<script>
 
 if(
     sessionStorage.getItem("logado")
@@ -10,8 +10,10 @@ if(
     window.location = "login.html";
 }
 
-</script>   
+</script>
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -57,6 +59,89 @@ body{
     max-width:1100px;
 
     padding:40px;
+}
+
+/* =========================
+   TOPO AÇÕES
+========================= */
+
+.topo-acoes{
+
+    position:absolute;
+
+    top:24px;
+
+    left:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    z-index:999;
+}
+
+.usuario-logado{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    color:#E5E7EB;
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.18);
+}
+
+.btn-topo{
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.18);
+}
+
+/* SAIR */
+
+.btn-sair-topo{
+
+    background:linear-gradient(
+        135deg,
+        #DC2626,
+        #991B1B
+    );
+}
+
+.btn-topo:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
 }
 
 /* =========================
@@ -149,73 +234,6 @@ h1{
 }
 
 /* =========================
-   TOPO AÇÕES
-========================= */
-
-.topo-acoes{
-
-    position:absolute;
-
-    top:24px;
-
-    right:30px;
-
-    display:flex;
-
-    gap:12px;
-
-    z-index:999;
-}
-
-.btn-topo{
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    color:white;
-
-    transition:.25s;
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,.18);
-}
-
-/* DASHBOARD */
-
-.btn-dashboard-topo{
-
-    background:linear-gradient(
-        135deg,
-        #2563EB,
-        #1D4ED8
-    );
-}
-
-/* SAIR */
-
-.btn-sair{
-
-    background:linear-gradient(
-        135deg,
-        #DC2626,
-        #991B1B
-    );
-}
-
-.btn-topo:hover{
-
-    transform:translateY(-2px);
-
-    opacity:.95;
-}
-/* =========================
    CARD
 ========================= */
 
@@ -268,6 +286,52 @@ h1{
 }
 
 /* =========================
+   BOTÃO DASHBOARD
+========================= */
+
+.btn-dashboard{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,.25);
+}
+
+.btn-dashboard:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -292,7 +356,6 @@ footer{
 
     font-weight:600;
 }
-
 
 /* =========================
    RESPONSIVO
@@ -321,59 +384,46 @@ footer{
 
         padding:24px;
     }
+
+    .topo-acoes{
+
+        position:relative;
+
+        top:auto;
+        left:auto;
+
+        margin:20px;
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .usuario-logado{
+
+        text-align:center;
+    }
 }
-
-.btn-sair{
-
-    width:100%;
-
-    margin-top:30px;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #991B1B,
-        #7F1D1D
-    );
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-.btn-sair:hover{
-
-    transform:translateY(-2px);
-}
-
 
 </style>
 </head>
 
 <body>
- <div class="topo-acoes">
 
-    <a
-    href="https://datastudio.google.com/reporting/b3d3d3c1-3dfd-47aa-b285-c7392288e927/page/QubyF"
-    target="_blank"
-    class="btn-topo btn-dashboard-topo"
+<!-- TOPO SUPERIOR -->
+
+<div class="topo-acoes">
+
+    <div class="usuario-logado" id="emailUsuario">
+        Usuário não identificado
+    </div>
+
+    <button
+    onclick="sair()"
+    class="btn-topo btn-sair-topo"
     >
-        DASHBOARD
-    </a>
-
-    
+        SAIR
+    </button>
 
 </div>
 
@@ -438,29 +488,34 @@ footer{
 
     </div>
 
-    <button onclick="sair()" class="btn-sair">
-    SAIR DO SISTEMA
-    </button>
+    <!-- DASHBOARD NA PARTE INFERIOR -->
 
+    <a
+    href="https://datastudio.google.com/reporting/b3d3d3c1-3dfd-47aa-b285-c7392288e927/page/QubyF"
+    target="_blank"
+    class="btn-dashboard"
+    >
+        ACESSAR DASHBOARD
+    </a>
 
     <!-- FOOTER -->
 
-   <footer>
+    <footer>
 
- <div class="footer-linha">
-      Idealizadores — Cap PM Alessandro • 1º Ten PM Camora
-   </div>
+        <div class="footer-linha">
+            Idealizadores — Cap PM Alessandro • 1º Ten PM Camora
+        </div>
 
-   <div class="footer-linha">
-      Desenvolvedores — Al Sd PM Feitosa • Al Sd PM Assis • Al Sd PM Samir
-   </div>
+        <div class="footer-linha">
+            Desenvolvedores — Al Sd PM Feitosa • Al Sd PM Assis • Al Sd PM Samir
+        </div>
 
-   <div class="footer-copy">
-      © 2026 Polícia Militar do Estado de São Paulo — ESSD
-   </div>
+        <div class="footer-copy">
+            © 2026 Polícia Militar do Estado de São Paulo — ESSD
+        </div>
 
+    </footer>
 
-</footer>
 </div>
 
 <script>
@@ -471,6 +526,23 @@ function sair(){
 
     window.location =
     "login.html";
+}
+
+/* =========================
+   MOSTRAR E-MAIL LOGADO
+========================= */
+
+const usuario =
+JSON.parse(
+    sessionStorage.getItem("usuario")
+);
+
+if(usuario && usuario.email){
+
+    document.getElementById(
+        "emailUsuario"
+    ).innerText =
+    usuario.email;
 }
 
 </script>
@@ -501,16 +573,5 @@ document.onkeydown = function(e){
 
 </script>
 
-
-<script>
-
-function sairSistema(){
-
-    sessionStorage.removeItem("logado");
-
-    window.location = "login.html";
-}
-
-</script>
 </body>
 </html>
