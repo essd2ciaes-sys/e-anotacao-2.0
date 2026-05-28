@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <script>
 
 if(
@@ -15,11 +16,15 @@ if(
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>E-Anotação 2.0</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
@@ -43,7 +48,9 @@ body{
     min-height:100vh;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     color:white;
@@ -56,6 +63,7 @@ body{
 .container{
 
     width:100%;
+
     max-width:1100px;
 
     padding:40px;
@@ -77,29 +85,9 @@ body{
 
     align-items:center;
 
-    gap:14px;
+    gap:12px;
 
     z-index:999;
-}
-
-.usuario-logado{
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.10);
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    font-size:14px;
-
-    color:#E5E7EB;
-
-    backdrop-filter:blur(8px);
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,.18);
 }
 
 .btn-topo{
@@ -116,25 +104,10 @@ body{
 
     color:white;
 
-    border:none;
-
-    cursor:pointer;
-
     transition:.25s;
 
     box-shadow:
         0 6px 18px rgba(0,0,0,.18);
-}
-
-/* SAIR */
-
-.btn-sair-topo{
-
-    background:linear-gradient(
-        135deg,
-        #DC2626,
-        #991B1B
-    );
 }
 
 .btn-topo:hover{
@@ -144,6 +117,45 @@ body{
     opacity:.95;
 }
 
+/* BOTÃO SAIR TOPO */
+
+.btn-sair-topo{
+
+    border:none;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #DC2626,
+        #991B1B
+    );
+}
+
+/* EMAIL USUÁRIO */
+
+.usuario-logado{
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    color:#E5E7EB;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    backdrop-filter:blur(6px);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.18);
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -151,7 +163,9 @@ body{
 .topo{
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     gap:40px;
@@ -168,7 +182,9 @@ body{
     object-fit:contain;
 
     filter:
-        drop-shadow(0 4px 10px rgba(0,0,0,.35));
+        drop-shadow(
+            0 4px 10px rgba(0,0,0,.35)
+        );
 }
 
 .titulos{
@@ -222,8 +238,6 @@ h1{
 .card:nth-child(3){
     grid-column:5 / 7;
 }
-
-/* CENTRALIZA 4ª E 5ª */
 
 .card:nth-child(4){
     grid-column:2 / 4;
@@ -299,20 +313,22 @@ h1{
 
     padding:18px;
 
+    border:none;
+
     border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563EB,
+            #1D4ED8
+        );
+
+    color:white;
 
     text-align:center;
 
     text-decoration:none;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563EB,
-        #1D4ED8
-    );
-
-    color:white;
 
     font-size:16px;
 
@@ -321,14 +337,12 @@ h1{
     transition:.25s;
 
     box-shadow:
-        0 10px 25px rgba(37,99,235,.25);
+        0 10px 25px rgba(0,0,0,.25);
 }
 
 .btn-dashboard:hover{
 
     transform:translateY(-2px);
-
-    opacity:.95;
 }
 
 /* =========================
@@ -387,19 +401,18 @@ footer{
 
     .topo-acoes{
 
-        position:relative;
+        left:50%;
 
-        top:auto;
-        left:auto;
-
-        margin:20px;
+        transform:translateX(-50%);
 
         flex-direction:column;
 
-        align-items:stretch;
+        width:90%;
     }
 
     .usuario-logado{
+
+        width:100%;
 
         text-align:center;
     }
@@ -410,13 +423,9 @@ footer{
 
 <body>
 
-<!-- TOPO SUPERIOR -->
+<!-- TOPO -->
 
 <div class="topo-acoes">
-
-    <div class="usuario-logado" id="emailUsuario">
-        Usuário não identificado
-    </div>
 
     <button
     onclick="sair()"
@@ -425,11 +434,18 @@ footer{
         SAIR
     </button>
 
+    <div
+    class="usuario-logado"
+    id="usuarioLogado"
+    >
+        USUÁRIO
+    </div>
+
 </div>
 
 <div class="container">
 
-    <!-- TOPO -->
+    <!-- HEADER -->
 
     <div class="topo">
 
@@ -457,7 +473,7 @@ footer{
 
     </div>
 
-    <!-- BOTÕES -->
+    <!-- CARDS -->
 
     <div class="grid">
 
@@ -488,14 +504,14 @@ footer{
 
     </div>
 
-    <!-- DASHBOARD NA PARTE INFERIOR -->
+    <!-- DASHBOARD -->
 
     <a
     href="https://datastudio.google.com/reporting/b3d3d3c1-3dfd-47aa-b285-c7392288e927/page/QubyF"
     target="_blank"
     class="btn-dashboard"
     >
-        ACESSAR DASHBOARD
+        DASHBOARD
     </a>
 
     <!-- FOOTER -->
@@ -537,10 +553,13 @@ JSON.parse(
     sessionStorage.getItem("usuario")
 );
 
-if(usuario && usuario.email){
+if(
+    usuario &&
+    usuario.email
+){
 
     document.getElementById(
-        "emailUsuario"
+        "usuarioLogado"
     ).innerText =
     usuario.email;
 }
@@ -564,7 +583,8 @@ document.onkeydown = function(e){
     if(
         e.ctrlKey &&
         e.shiftKey &&
-        e.keyCode == 'I'.charCodeAt(0)
+        e.keyCode ==
+        'I'.charCodeAt(0)
     ){
 
         return false;
