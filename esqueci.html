@@ -36,9 +36,27 @@ body{
   border-radius:20px;
 
   width:100%;
+
   max-width:420px;
 
   color:white;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.30);
+}
+
+h2{
+
+  margin-top:0;
+
+  margin-bottom:10px;
+}
+
+p{
+
+  color:#D1D5DB;
+
+  margin-bottom:20px;
 }
 
 input{
@@ -56,6 +74,16 @@ input{
   background:#374151;
 
   color:white;
+
+  box-sizing:border-box;
+}
+
+input:focus{
+
+  outline:none;
+
+  box-shadow:
+    0 0 0 3px rgba(37,99,235,.35);
 }
 
 button{
@@ -77,6 +105,45 @@ button{
   font-weight:bold;
 
   cursor:pointer;
+
+  transition:.2s;
+}
+
+button:hover{
+
+  transform:translateY(-2px);
+
+  opacity:.95;
+}
+
+/* =========================
+   LINK VOLTAR
+========================= */
+
+.link-voltar{
+
+  display:block;
+
+  margin-top:22px;
+
+  text-align:center;
+
+  color:#93C5FD;
+
+  text-decoration:none;
+
+  font-size:14px;
+
+  font-weight:bold;
+
+  transition:.2s;
+}
+
+.link-voltar:hover{
+
+  color:white;
+
+  text-decoration:underline;
 }
 
 </style>
@@ -102,6 +169,13 @@ placeholder="usuario@policiamilitar.sp.gov.br"
 <button onclick="enviar()">
 ENVIAR LINK
 </button>
+
+<a
+href="login.html"
+class="link-voltar"
+>
+← Voltar para Login
+</a>
 
 </div>
 
